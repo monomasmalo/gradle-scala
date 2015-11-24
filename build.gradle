@@ -1,0 +1,23 @@
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+
+repositories{
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies{
+    compile "org.slf4j:slf4j-api:1.7.5"
+    compile "org.scala-lang:scala-library:2.11.7"
+    testCompile "junit:junit:4.11"
+    testCompile "org.scalaz.stream:scalaz-stream_2.11:0.7.2"
+    testCompile "org.specs2:specs2-core_2.11:3.6.5"
+    testCompile "org.specs2:specs2-junit_2.11:3.6.5"
+    testCompile "org.scalatest:scalatest_2.11:3.0.0-M12"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = 'Main'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
